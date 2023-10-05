@@ -1,0 +1,266 @@
+{
+  "GEN": {
+    "full_name": "Genesis",
+    "abbreviations": ["Gen", "Ge", "Gn"]
+  },
+  "EXO": {
+    "full_name": "Exodus",
+    "abbreviations": ["Ex", "Exo", "Exod"]
+  },
+  "LEV": {
+    "full_name": "Leviticus",
+    "abbreviations": ["Lev", "Le", "Lv"]
+  },
+  "NUM": {
+    "full_name": "Numbers",
+    "abbreviations": ["Num", "Nu", "Nm", "Nb"]
+  },
+  "DEU": {
+    "full_name": "Deuteronomy",
+    "abbreviations": ["Deu", "De", "Dt"]
+  },
+  "JOS": {
+    "full_name": "Joshua",
+    "abbreviations": ["Jos", "Josh"]
+  },
+  "JDG": {
+    "full_name": "Judges",
+    "abbreviations": ["Jdg", "Judg"]
+  },
+  "RTH": {
+    "full_name": "Ruth",
+    "abbreviations": ["Ruth", "Rt", "Ru"]
+  },
+  "1SA": {
+    "full_name": "1 Samuel",
+    "abbreviations": ["1 Sam", "1 Sa", "1Sam", "1Sa"]
+  },
+  "2SA": {
+    "full_name": "2 Samuel",
+    "abbreviations": ["2 Sam", "2 Sa", "2Sam", "2Sa"]
+  },
+  "1KI": {
+    "full_name": "1 Kings",
+    "abbreviations": ["1 Kgs", "1 Ki", "1Kgs", "1Ki"]
+  },
+  "2KI": {
+    "full_name": "2 Kings",
+    "abbreviations": ["2 Kgs", "2 Ki", "2Kgs", "2Ki"]
+  },
+  "1CH": {
+    "full_name": "1 Chronicles",
+    "abbreviations": ["1 Chr", "1 Ch", "1Chr", "1Ch"]
+  },
+  "2CH": {
+    "full_name": "2 Chronicles",
+    "abbreviations": ["2 Chr", "2 Ch", "2Chr", "2Ch"]
+  },
+  "EZR": {
+    "full_name": "Ezra",
+    "abbreviations": ["Ezr", "Ez"]
+  },
+  "NEH": {
+    "full_name": "Nehemiah",
+    "abbreviations": ["Neh", "Ne"]
+  },
+  "EST": {
+    "full_name": "Esther",
+    "abbreviations": ["Est", "Es"]
+  },
+  "JOB": {
+    "full_name": "Job",
+    "abbreviations": ["Job", "Jb"]
+  },
+  "PSA": {
+    "full_name": "Psalms",
+    "abbreviations": ["Ps", "Psa"]
+  },
+  "PRO": {
+    "full_name": "Proverbs",
+    "abbreviations": ["Prov", "Pr", "Pro"]
+  },
+  "ECC": {
+    "full_name": "Ecclesiastes",
+    "abbreviations": ["Ecc", "Eccl", "Ec"]
+  },
+  "SNG": {
+    "full_name": "Song of Solomon",
+    "abbreviations": ["Song", "So", "Sng"]
+  },
+  "ISA": {
+    "full_name": "Isaiah",
+    "abbreviations": ["Isa", "Is"]
+  },
+  "JER": {
+    "full_name": "Jeremiah",
+    "abbreviations": ["Jer", "Je", "Jr"]
+  },
+  "LAM": {
+    "full_name": "Lamentations",
+    "abbreviations": ["Lam", "La"]
+  },
+  "EZK": {
+    "full_name": "Ezekiel",
+    "abbreviations": ["Ezek", "Eze", "Ezk"]
+  },
+  "DAN": {
+    "full_name": "Daniel",
+    "abbreviations": ["Dan", "Da", "Dn"]
+  },
+  "HOS": {
+    "full_name": "Hosea",
+    "abbreviations": ["Hos", "Ho"]
+  },
+  "JOL": {
+    "full_name": "Joel",
+    "abbreviations": ["Joel", "Joe", "Jl"]
+  },
+  "AMO": {
+    "full_name": "Amos",
+    "abbreviations": ["Amos", "Am"]
+  },
+  "OBA": {
+    "full_name": "Obadiah",
+    "abbreviations": ["Obad", "Ob"]
+  },
+  "JON": {
+    "full_name": "Jonah",
+    "abbreviations": ["Jon", "Jonah", "Jnh"]
+  },
+  "MIC": {
+    "full_name": "Micah",
+    "abbreviations": ["Mic", "Mi"]
+  },
+  "NAM": {
+    "full_name": "Nahum",
+    "abbreviations": ["Nah", "Na"]
+  },
+  "HAB": {
+    "full_name": "Habakkuk",
+    "abbreviations": ["Hab", "Hb"]
+  },
+  "ZEP": {
+    "full_name": "Zephaniah",
+    "abbreviations": ["Zeph", "Zep", "Zp"]
+  },
+  "HAG": {
+    "full_name": "Haggai",
+    "abbreviations": ["Hag", "Hagg"]
+  },
+  "ZEC": {
+    "full_name": "Zechariah",
+    "abbreviations": ["Zech", "Zec", "Zc"]
+  },
+  "MAL": {
+    "full_name": "Malachi",
+    "abbreviations": ["Mal", "Ml"]
+  },
+  "MAT": {
+    "full_name": "Matthew",
+    "abbreviations": ["Matt", "Mt"]
+  },
+  "MRK": {
+    "full_name": "Mark",
+    "abbreviations": ["Mark", "Mk"]
+  },
+  "LUK": {
+    "full_name": "Luke",
+    "abbreviations": ["Luke", "Lk"]
+  },
+  "JHN": {
+    "full_name": "John",
+    "abbreviations": ["John", "Jn"]
+  },
+  "ACT": {
+    "full_name": "Acts",
+    "abbreviations": ["Acts", "Ac"]
+  },
+  "ROM": {
+    "full_name": "Romans",
+    "abbreviations": ["Rom", "Ro", "Rm"]
+  },
+  "1CO": {
+    "full_name": "1 Corinthians",
+    "abbreviations": ["1 Cor", "1 Co", "1Cor", "1Co"]
+  },
+  "2CO": {
+    "full_name": "2 Corinthians",
+    "abbreviations": ["2 Cor", "2 Co", "2Cor", "2Co"]
+  },
+  "GAL": {
+    "full_name": "Galatians",
+    "abbreviations": ["Gal", "Ga"]
+  },
+  "EPH": {
+    "full_name": "Ephesians",
+    "abbreviations": ["Eph", "Ephes"]
+  },
+  "PHP": {
+    "full_name": "Philippians",
+    "abbreviations": ["Phil", "Php", "Pp"]
+  },
+  "COL": {
+    "full_name": "Colossians",
+    "abbreviations": ["Col", "Colo"]
+  },
+  "1TH": {
+    "full_name": "1 Thessalonians",
+    "abbreviations": ["1 Thess", "1 Th", "1Thess", "1Th"]
+  },
+  "2TH": {
+    "full_name": "2 Thessalonians",
+    "abbreviations": ["2 Thess", "2 Th", "2Thess", "2Th"]
+  },
+  "1TI": {
+    "full_name": "1 Timothy",
+    "abbreviations": ["1 Tim", "1 Ti", "1Tim", "1Ti"]
+  },
+  "2TI": {
+    "full_name": "2 Timothy",
+    "abbreviations": ["2 Tim", "2 Ti", "2Tim", "2Ti"]
+  },
+  "TIT": {
+    "full_name": "Titus",
+    "abbreviations": ["Titus", "Tit", "Ti"]
+  },
+  "PHM": {
+    "full_name": "Philemon",
+    "abbreviations": ["Philem", "Phm", "Phlm"]
+  },
+  "HEB": {
+    "full_name": "Hebrews",
+    "abbreviations": ["Heb", "He"]
+  },
+  "JAS": {
+    "full_name": "James",
+    "abbreviations": ["James", "Jas", "Jm"]
+  },
+  "1PE": {
+    "full_name": "1 Peter",
+    "abbreviations": ["1 Pet", "1 Pe", "1Pet", "1Pe"]
+  },
+  "2PE": {
+    "full_name": "2 Peter",
+    "abbreviations": ["2 Pet", "2 Pe", "2Pet", "2Pe"]
+  },
+  "1JN": {
+    "full_name": "1 John",
+    "abbreviations": ["1 John", "1 Jn", "1Jn"]
+  },
+  "2JN": {
+    "full_name": "2 John",
+    "abbreviations": ["2 John", "2 Jn", "2Jn"]
+  },
+  "3JN": {
+    "full_name": "3 John",
+    "abbreviations": ["3 John", "3 Jn", "3Jn"]
+  },
+  "JUD": {
+    "full_name": "Jude",
+    "abbreviations": ["Jude", "Jud", "Jd"]
+  },
+  "REV": {
+    "full_name": "Revelation",
+    "abbreviations": ["Rev", "Re", "Rv"]
+  }
+}
