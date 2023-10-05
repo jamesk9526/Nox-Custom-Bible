@@ -27,9 +27,9 @@ Nox Custom Bible is a WordPress plugin designed to enable custom Bible verse pop
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://github.com/yourusername/nox-custom-bible/releases) page.
+1. Download the `nox-custom-bible.zip` file from the Files section.
 2. In your WordPress dashboard, go to `Plugins` > `Add New` > `Upload Plugin`.
-3. Choose the downloaded file and click `Install Now`.
+3. Choose the downloaded zip file and click `Install Now`.
 4. After the installation is complete, click `Activate`.
 
 ## Usage
