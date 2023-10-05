@@ -2,7 +2,6 @@
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![PCE Plugin](https://github.com/jamesk9526/Nox-Custom-Bible/assets/93682381/2741ae1e-4d49-4be8-8e6d-a54f242771a4)
 
 ## Table of Contents
 
@@ -14,6 +13,8 @@
 - [Contribution](#contribution)
 - [License](#license)
 - [Support](#support)
+
+![PCE Plugin](https://github.com/jamesk9526/Nox-Custom-Bible/assets/93682381/2741ae1e-4d49-4be8-8e6d-a54f242771a4)
 
 ## Description
 
