@@ -36,6 +36,43 @@ Nox Custom Bible is a WordPress plugin designed to enable custom Bible verse pop
 
 Once activated, the plugin will automatically highlight Bible references in your posts and pages. When a user hovers over a reference, a popup will appear displaying the corresponding verse.
 
+Documentation: Formatting Bible Verses for Nox Custom Bible Plugin
+
+The Nox Custom Bible plugin is designed to recognize and highlight Bible verse references within your content. To ensure accurate recognition and formatting, it's essential to follow a specific notation when writing out Bible verses. As of the current version, the plugin supports a basic notation, but with time, updates will be rolled out to accommodate more formatting options.
+Current Supported Notation:
+
+    Book Name followed by Chapter and Verse, separated by a colon (:).
+    Book abbreviations should be standardized as per the abbreviations.json file included in the plugin.
+    If mentioning multiple verses, use a hyphen (-) to indicate the range.
+
+Examples:
+
+    Single Verse:
+        Correct: John 3:16
+        Incorrect: Jn 3 16
+
+    Verse Range:
+        Correct: Romans 8:28-30
+        Incorrect: Rom 8 28 to 30
+
+    Multiple References:
+        Separate different references with a semicolon (;).
+        Example: Genesis 1:1; John 1:1; Revelation 22:21
+
+Future Updates:
+
+We are working tirelessly to improve the Nox Custom Bible plugin, and part of that involves enhancing the range of recognizable verse notations. In future versions, we aim to support:
+
+    Space or other common separators between book name, chapter, and verse.
+    Different book abbreviations.
+    Multiple verse references without the need for a semicolon.
+
+Feedback and Contributions:
+
+Your feedback is invaluable to the continual improvement of this plugin. If you encounter any issues, have suggestions, or wish to contribute to the development of this feature, feel free to raise an issue or submit a pull request on the Github repository.
+
+We appreciate your patience and support as we work towards making the Nox Custom Bible plugin more versatile and user-friendly. Stay tuned for updates, and thank you for being part of this journey to enrich online scripture reading and exploration!
+
 ## Settings
 
 Navigate to the Nox Custom Bible settings page in your WordPress dashboard to configure the plugin according to your preferences.
