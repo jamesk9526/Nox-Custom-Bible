@@ -1,0 +1,249 @@
+jQuery(document).ready(function($) {
+    // Normalize a reference to a standard format (e.g., "Genesis 1:1")
+    function normalizeReference(reference) {
+        return new Promise((resolve, reject) => {
+            // Remove extra spaces and convert to title case
+            reference = reference.trim().toLowerCase().replace(/\b\w/g, function(l) {
+                return l.toUpperCase();
+            });
+
+            // Fetch abbreviations from the JSON file
+            $.ajax({
+                url: 'abbreviations.json',
+                dataType: 'json',
+                success: function(data) {
+                    var abbreviations = {};
+                    for (var key in data) {
+                        data[key].abbreviations.forEach(function(abb) {
+                            abbreviations[abb.toUpperCase()] = data[key].full_name;
+                        });
+                    }
+                    
+                    // Additional abbreviations
+                    // ... (Add any additional abbreviations here)
+
+                    // Replace abbreviations with their full names
+                    for (var abbreviation in abbreviations) {
+                        if (abbreviations.hasOwnProperty(abbreviation)) {
+                            reference = reference.replace(new RegExp(abbreviation, 'g'), abbreviations[abbreviation]);
+                        }
+                    }
+
+                    // Replace different separators with ":"
+                    reference = reference.replace(/[\s,.;]+/g, ':');
+                    resolve(reference);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Failed to load abbreviations. Error:', errorThrown);
+                    reject(errorThrown);
+                }
+            });
+        });
+    }
+
+    // Highlight Bible references in the content
+    function highlightBibleReferences() {
+        var content = $('body').html();
+        // Modified regex to match various reference formats, including verse ranges
+        var regex = /\b(?:\d\s?)?[A-Za-z]+\s?\d+[:.,]\d+(?:[-,]\d+)?\b/g;
+        var matches = content.match(regex);
+
+        if (matches) {
+            var promises = matches.map(function(reference) {
+                return normalizeReference(reference).then(function(normalizedReference) {
+                    var highlightedReference = '<span class="bible-reference">' + normalizedReference + '</span>';
+                    content = content.replace(new RegExp(reference, 'g'), highlightedReference);
+                });
+            });
+
+            Promise.all(promises).then(function() {
+                $('body').html(content);
+            });
+        }
+    }
+
+    // Fetch and display the verse in a popup on mouseover
+    function attachPopupToReferences() {
+        $('body').on('mouseover', '.bible-reference', function() {
+            var reference = $(this).text();
+            fetchVerse(reference, $(this));
+        });
+    }
+
+    // Fetch the verse using AJAX
+    function fetchVerse(reference, element) {
+        normalizeReference(reference).then(function(normalizedReference) {
+            $.ajax({
+                url: '/wp-content/plugins/nox-custom-bible/fetch-verse.php',
+                data: { reference: normalizedReference },
+                success: function(verse) {
+                    if (verse && verse.trim() !== "") {
+                        showPopup(verse, element);
+                    } else {
+                        console.error('Verse not found for the reference:', normalizedReference);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Failed to fetch the verse. Error:', errorThrown);
+                    alert('Error: ' + errorThrown); // Display error message to user
+                }
+            });
+        }).catch(function(error) {
+            console.error('Failed to normalize the reference. Error:', error);
+        });
+    }
+
+   function showPopup(verse, element) {
+    var popup = $('<div class="bible-popup">' + verse + '<div class="your-info">Your Name - Your Website</div></div>');
+    $('body').append(popup);
+    popup.css({
+        top: element.offset().top + element.height(),
+        left: element.offset().left
+    });
+
+    // Event listener for mouse leaving the original element
+    element.on('mouseleave', function() {
+        popup.remove();
+    });
+
+    // Additional event listener for mouse leaving the popup
+    popup.on('mouseleave', function() {
+        popup.remove();
+    });
+}
+
+
+    // Execute the functions
+    highlightBibleReferences();
+    attachPopupToReferences();
+});
+
+
+
+
+
+
+
+
+
+V 2 
+
+
+
+
+jQuery(document).ready(function($) {
+    // Normalize a reference to a standard format (e.g., "Genesis 1:1")
+    function normalizeReference(reference) {
+        return new Promise((resolve, reject) => {
+            // Remove extra spaces and convert to title case
+            reference = reference.trim().toLowerCase().replace(/\b\w/g, function(l) {
+                return l.toUpperCase();
+            });
+
+            // Fetch abbreviations from the JSON file
+            $.ajax({
+                url: 'abbreviations.json',
+                dataType: 'json',
+                success: function(data) {
+                    var abbreviations = {};
+                    for (var key in data) {
+                        data[key].abbreviations.forEach(function(abb) {
+                            abbreviations[abb.toUpperCase()] = data[key].full_name;
+                        });
+                    }
+                    
+                    // Additional abbreviations
+                    // ... (Add any additional abbreviations here)
+
+                    // Replace abbreviations with their full names
+                    for (var abbreviation in abbreviations) {
+                        if (abbreviations.hasOwnProperty(abbreviation)) {
+                            reference = reference.replace(new RegExp(abbreviation, 'g'), abbreviations[abbreviation]);
+                        }
+                    }
+
+                    // Replace different separators with ":"
+                    reference = reference.replace(/[\s,.;]+/g, ':');
+                    resolve(reference);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Failed to load abbreviations. Error:', errorThrown);
+                    reject(errorThrown);
+                }
+            });
+        });
+    }
+
+    // Highlight Bible references in the content
+   function highlightBibleReferences() {
+    var content = $('body').html();
+    var regex = /\b(?:\d\s?)?[A-Za-z]+\s\d+[:]\d+(?:[-]\d+)?\b/g;
+    
+    function replacer(match) {
+        // Check if this match has already been highlighted
+        if (match.includes('bible-reference')) {
+            return match;  // If so, return the match unchanged
+        }
+        return '<span class="bible-reference">' + match + '</span>';  // Otherwise, highlight it
+    }
+    
+    content = content.replace(regex, replacer);
+    $('body').html(content);
+}
+
+    // Fetch and display the verse in a popup on mouseover
+    function attachPopupToReferences() {
+        $('body').on('mouseover', '.bible-reference', function() {
+            var reference = $(this).text();
+            fetchVerse(reference, $(this));
+        });
+    }
+
+    // Fetch the verse using AJAX
+    function fetchVerse(reference, element) {
+        normalizeReference(reference).then(function(normalizedReference) {
+            $.ajax({
+                url: '/wp-content/plugins/nox-custom-bible/fetch-verse.php',
+                data: { reference: normalizedReference },
+                success: function(verse) {
+                    if (verse && verse.trim() !== "") {
+                        showPopup(verse, element);
+                    } else {
+                        console.error('Verse not found for the reference:', normalizedReference);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Failed to fetch the verse. Error:', errorThrown);
+                    alert('Error: ' + errorThrown); // Display error message to user
+                }
+            });
+        }).catch(function(error) {
+            console.error('Failed to normalize the reference. Error:', error);
+        });
+    }
+
+   function showPopup(verse, element) {
+    var popup = $('<div class="bible-popup">' + verse + '<div class="your-info">Your Name - Your Website</div></div>');
+    $('body').append(popup);
+    popup.css({
+        top: element.offset().top + element.height(),
+        left: element.offset().left
+    });
+
+    // Event listener for mouse leaving the original element
+    element.on('mouseleave', function() {
+        popup.remove();
+    });
+
+    // Additional event listener for mouse leaving the popup
+    popup.on('mouseleave', function() {
+        popup.remove();
+    });
+}
+
+
+    // Execute the functions
+    highlightBibleReferences();
+    attachPopupToReferences();
+});
+
