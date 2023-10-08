@@ -86,6 +86,7 @@ jQuery(document).ready(function($) {
 
             return reference;
         }
+		
 
         // Function to highlight references in a text node
         function highlightTextNode(textNode) {
@@ -93,7 +94,7 @@ jQuery(document).ready(function($) {
             var text = textNode.nodeValue;
             var highlightedText = text.replace(regex, function(match) {
                 match = normalizeReference(match);
-                
+                return '<span class="highlighted-reference" style="background-color: yellow;" data-reference="' + match + '">' + match + '</span>';
             });
 
             var tempDiv = document.createElement('div');
@@ -110,7 +111,7 @@ jQuery(document).ready(function($) {
         });
 
         // Handle click events on highlighted references
-        $('body').on('click', '.highlighted-reference', function() {
+          $('body').on('click', '.highlighted-reference', function() {
     var reference = $(this).data('reference');
     var bookName = reference.split(' ')[0];
     var chapterVerse = reference.split(' ')[1];
@@ -148,78 +149,24 @@ jQuery(document).ready(function($) {
             }
         }
     }
-	
-	console.log('Clicked Reference:', reference);
-console.log('Book Name:', bookName);
-console.log('Chapter:', chapter);
-console.log('Verses:', verses);
 
-    // Display the verse text in a modal (you may need to adjust this part depending on your specific implementation)
-    var modalHtml = '<div id="verseModal" class="modal">' +
-        '<div class="modal-content">' +
-        '<span class="close">&times;</span>' +
-        '<p>' + verseText + '</p>' +
-        '</div></div>';
-    $('body').append(modalHtml);
-    var modal = $('#verseModal');
-    modal.show();
-    modal.find('.close').on('click', function() {
-        modal.remove();
-			});
-		});
+            var modalHtml = '<div id="verseModal" class="modal">' +
+                                '<div class="modal-content">' +
+                                    '<span class="close">&times;</span>' +
+                                    '<div class="verse-text">' + verseText + '</div>' +  // Updated to show verseText
+                                    '<div class="plugin-info">' +
+                                        '<p>NoxCustomBible</p>' +
+                                        '<p>Pure Cambridge Edition King James Version</p>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>';
+            $('body').append(modalHtml);
+            var modal = $('#verseModal');
+            modal.show();
 
-	});
-});
-
-
-function formatVersesWithNumbers(verses, startVerseNumber) {
-    var formattedText = "";
-    verses.split('\n').forEach(function(verse, index) {
-        var verseNumber = startVerseNumber + index;
-        formattedText += "{" + verseNumber + "} " + verse + " ";
+            modal.find('.close').on('click', function() {
+                modal.remove();
+            });
+        });
     });
-    return formattedText.trim();
-}
-
-
-function getContext(verses, currentVerseNumber) {
-    var contextRange = 3;  // Number of verses before and after the current verse to include in the context
-    var startIndex = Math.max(0, currentVerseNumber - contextRange - 1);
-    var endIndex = Math.min(verses.length, currentVerseNumber + contextRange);
-    return verses.slice(startIndex, endIndex).join(" ");
-}
-
-
-// This is where you would implement the lightbox content update
-// I'm assuming you have some way of getting the current verse number and the total verses in the chapter
-var currentVerseNumber = 26;  // Adjust this as needed
-var allVerses = [ /* Array containing all verses in the chapter */ ];  // Adjust this as needed
-
-// Get the formatted verses with numbers
-var formattedVerses = formatVersesWithNumbers(lightboxContent, currentVerseNumber);  // Assuming `lightboxContent` contains the verse text
-
-// Update the lightbox content (you might need to adjust this part based on your actual lightbox implementation)
-lightboxContent = formattedVerses;
-
-// Add a context button to the lightbox (adjust the HTML as needed)
-lightboxContent += '<button id="contextButton">Show Context</button>';
-
-
-        // This is where you would implement the lightbox content update
-        var currentVerseNumber = 26;  // Adjust this as needed
-        var allVerses = [ /* Array containing all verses in the chapter */ ];  // Adjust this as needed
-
-        // Get the formatted verses with numbers
-        var formattedVerses = formatVersesWithNumbers(lightboxContent, currentVerseNumber); 
-
-        // Update the lightbox content
-        lightboxContent = formattedVerses;
-
-        // Add a context button to the lightbox
-        lightboxContent += '<button id="contextButton">Show Context</button>';
-
-    // Add an event listener for the context button
-document.getElementById('contextButton').addEventListener('click', function() {
-    var context = getContext(allVerses, currentVerseNumber);
-    alert(context);  // Display the context in an alert box for now, adjust this as needed
 });
