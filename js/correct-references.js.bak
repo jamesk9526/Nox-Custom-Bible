@@ -1,0 +1,237 @@
+jQuery(document).ready(function($) {
+
+// Define a function to correct Bible references
+function correctReferences(text) {
+    // Define an object with abbreviations and their full names for all books of the Bible
+    var abbreviations = {
+        "GEN": "Genesis", "EXO": "Exodus", "LEV": "Leviticus", "NUM": "Numbers",
+        "DEU": "Deuteronomy", "JOS": "Joshua", "JUD": "Jude", "RUT": "Ruth",
+        "1 S": "1 Samuel", "2 S": "2 Samuel", "1 K": "1 Kings", "2 K": "2 Kings",
+        "1 C": "1 Corinthians", "2 C": "2 Corinthians", "EZR": "Ezra", "NEH": "Nehemiah",
+        "EST": "Esther", "JOB": "Job", "PSA": "Psalms", "PRO": "Proverbs",
+        "ECC": "Ecclesiastes", "SON": "Song of Solomon", "ISA": "Isaiah", "JER": "Jeremiah",
+        "LAM": "Lamentations", "EZE": "Ezekiel", "DAN": "Daniel", "HOS": "Hosea",
+        "JOE": "Joel", "AMO": "Amos", "OBA": "Obadiah", "JON": "Jonah", "MIC": "Micah",
+        "NAH": "Nahum", "HAB": "Habakkuk", "ZEP": "Zephaniah", "HAG": "Haggai",
+        "ZEC": "Zechariah", "MAL": "Malachi", "MAT": "Matthew", "MAR": "Mark",
+        "LUK": "Luke", "JOH": "John", "ACT": "Acts", "ROM": "Romans", "GAL": "Galatians",
+        "EPH": "Ephesians", "PHI": "Philemon", "COL": "Colossians", "1 T": "1 Timothy",
+        "2 T": "2 Timothy", "TIT": "Titus", "HEB": "Hebrews", "JAM": "James",
+        "1 P": "1 Peter", "2 P": "2 Peter", "1 J": "1 John", "2 J": "2 John",
+        "3 J": "3 John", "REV": "Revelation"
+    };
+
+    // Define an array of regular expressions to match different reference formats
+    var referenceRegexes = [
+        // Format: "1 Corinthians 1:1-5" or "1 Cor. 1:1-5" or "1 Cor 1:1-5"
+        /(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?/g,
+
+        // Format: "1 Corinthians 1:1 to 1:5" or "1 Cor 1:1 to 1:5" or "1 Cor. 1:1 to 1:5"
+        /(\d\s?)?[A-Za-z]+\.?\s\d+\s?to\s\d+[:]\d+/g,
+
+        // Format: "1 Corinthians 1:1ff" or "1 Cor. 1:1ff" or "1 Cor 1:1ff"
+        /(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+ff/g,
+		
+		// Bible Reference Format Variations
+
+// 1. "John 3:16-18"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?/g,
+
+// 2. "John 3:16 to 3:18"
+/(\d\s?)?[A-Za-z]+\.?\s\d+\s?to\s\d+[:]\d+/g,
+
+// 3. "John 3:16ff"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+ff/g,
+
+// 4. "John 3:16, 4:5, 5:10"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[,]\s\d+[:]\d+)+/g,
+
+// 5. "John 3:16-18, 4:5, 5:10"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s\d+[:]\d+)+/g,
+
+// 6. "John 3:16 to 3:18, 4:5, 5:10"
+/(\d\s?)?[A-Za-z]+\.?\s\d+\s?to\s\d+[:]\d+(?:[,]\s\d+[:]\d+)+/g,
+
+// 7. "John 3:16-18ff"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?ff/g,
+
+// 8. "John 3:16, 4:5-7, 5:10"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[,]\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 9. "John 3:16-18, 4:5-7, 5:10"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 10. "John 3:16 to 3:18ff"
+/(\d\s?)?[A-Za-z]+\.?\s\d+\s?to\s\d+[:]\d+ff/g,
+
+// 11. "1 Cor 1:1-5, 2 Cor 4:7-9"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 12. "1 Cor 1:1-5; 2 Cor 4:7-9"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[;]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 13. "1 Cor 1:1-5; 2 Cor 4:7-9; John 3:16"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[;]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 14. "1 Cor 1:1-5, 2 Cor 4:7-9, John 3:16"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 15. "1 Cor 1:1-5; 2 Cor 4:7-9; John 3:16; Genesis 1:1-3"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[;]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 16. "1 Cor 1:1-5, 2 Cor 4:7-9, John 3:16, Genesis 1:1-3"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 17. "1 Cor 1:1-5; 2 Cor 4:7-9; John 3:16; Genesis 1:1-3, 4:5-7"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[;]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 18. "John 3:16, 4:5; 2 Cor 4:7"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[,]\s\d+[:]\d+)+/g,
+
+// 19. "John 3:16-18, 4:5; 2 Cor 4:7-9"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s\d+[:]\d+)+/g,
+
+// 20. "John 3:16, 4:5-7; 2 Cor 4:7"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[,]\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 21. "John 3:16-18, 4:5-7; 2 Cor 4:7-9"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 22. "John 3:16, 4:5; 2 Cor 4:7-9; Genesis 1:1-3"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[,]\s\d+[:]\d+)+/g,
+
+// 23. "John 3:16-18, 4:5-7; 2 Cor 4:7-9; Genesis 1:1-3"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 24. "1 Cor 1:1-5, 2 Cor 4:7-9; John 3:16, Genesis 1:1-3"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 25. "1 Cor 1:1-5; 2 Cor 4:7-9; John 3:16; Genesis 1:1-3, 4:5-7"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[;]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 26. "1 Cor 1:1-5, 2 Cor 4:7-9, John 3:16, Genesis 1:1-3, 4:5-7"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 27. "1 Cor 1:1-5; 2 Cor 4:7-9; John 3:16; Genesis 1:1-3, 4:5-7, 5:10-12"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[;]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 28. "John 3:16, 4:5, 5:10; 1 Cor 1:1-5; 2 Cor 4:7-9"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[,]\s\d+[:]\d+)+[;]\s\d+[:]\d+(?:[-]\d+)?(?:[;]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 29. "1 Cor 1:1-5, 2 Cor 4:7-9; John 3:16, Genesis 1:1-3; 4:5-7, 5:10-12"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+// 30. "John 3:16-18, 4:5; 2 Cor 4:7-9; Genesis 1:1-3, 4:5-7, 5:10-12"
+/(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?(?:[,]\s\d+[:]\d+)+[;]\s\d+[:]\d+(?:[-]\d+)?(?:[;]\s(\d\s?)?[A-Za-z]+\.?\s\d+[:]\d+(?:[-]\d+)?)+/g,
+
+    /(\d\s?)?[1-3]?\s?[A-Za-z]+\s\d+[:]\d+(?:[-]\d+)?/g,
+	
+	/(\d\s?)?[1-3]?\s?[A-Za-z]+\s\d+[:]\d+(?:[-]\d+)?|(\d\s?)?[1-3]?\s?[A-Za-z]+\s\d+[:]\d+(?:[-]\d+)?(?![A-Za-z])/g
+
+
+        // Add more variations as needed...
+    ];
+
+
+function correctReferenceFormat(text) {
+        // Define a regular expression to match references without spaces and a number at the beginning
+        var referenceRegex = /(\d\s?)?[1-3]?\s?[A-Za-z]+\s\d+[:]\d+(?:[-]\d+)?(?![A-Za-z])/g;
+
+        // Replace references in the text with corrected format
+        var correctedText = text.replace(referenceRegex, function(match) {
+            // Split the matched text to separate book name and verse
+            var parts = match.split(' ');
+            if (parts.length === 2) {
+                var bookName = parts[0];
+                var verse = parts[1];
+                // Insert a space before the verse number
+                return bookName + ' ' + verse;
+            }
+            return match; // No change needed
+        });
+
+        return correctedText;
+    }
+
+    // Apply both corrections to the page content
+    var pageContent = $('body').html();
+    pageContent = correctReferenceFormat(pageContent);
+    pageContent = correctReferences(pageContent);
+    $('body').html(pageContent);
+
+
+    // Replace references in the text with their full names
+    referenceRegexes.forEach(function(regex) {
+        text = text.replace(regex, function(match) {
+            // Clean the match by removing extra punctuation or spaces
+            var cleanedMatch = match.replace(/[,.;:]/g, '').trim();
+
+            // Split the cleaned match into parts (e.g., book, chapter, verse)
+            var parts = cleanedMatch.split(' ');
+
+            // Ensure that there are at least two parts (book and chapter/verse)
+            if (parts.length < 2) {
+                return match; // Return the original match if not enough parts
+            }
+
+            // Extract the abbreviation and chapter/verse information
+            var abbreviation = parts[0];
+            var chapterVerse = parts[1];
+
+            // Check if the abbreviation exists in the mapping
+            if (abbreviations.hasOwnProperty(abbreviation)) {
+                // Replace the abbreviation with the full name and preserve the rest of the match
+                return cleanedMatch.replace(abbreviation, abbreviations[abbreviation]);
+            }
+
+            return match; // If the abbreviation is not found, keep the original match
+        });
+    });
+
+    return text;
+}
+
+
+
+    // Define a function to correct the reference format "1Peter 2:2" to "1 Peter 2:2"
+    function correctReferenceFormat(text) {
+        // Define a regular expression to match references without spaces and with a number at the beginning
+        var referenceRegex = /(\d\s?)?[1-3]?\s?[A-Za-z]+\s\d+[:]\d+(?:[-]\d+)?(?![A-Za-z])/g;
+
+        // Replace references in the text with corrected format
+        var correctedText = text.replace(referenceRegex, function(match) {
+            // Split the matched text to separate book name and verse
+            var parts = match.split(' ');
+            if (parts.length === 2) {
+                var bookName = parts[0];
+                var verse = parts[1];
+                // Insert a space before the verse number
+                return bookName + ' ' + verse;
+            }
+            return match; // No change needed
+        });
+
+        return correctedText;
+    }
+
+    // Apply both corrections to the page content
+    var pageContent = $('body').html();
+    pageContent = correctReferenceFormat(pageContent);
+    pageContent = correctReferences(pageContent);
+    $('body').html(pageContent);
+
+    // Debug output (you can check the browser console for debug messages)
+    console.log("Debug: Original content:", $('body').html());
+    console.log("Debug: Corrected content:", pageContent);
+
+    // Load the main script from /js/ncb.js
+    var script = document.createElement('script');
+    script.src = '/js/ncb.js';
+    document.head.appendChild(script);
+});
+// Usage example:
+// var inputText = "This is a sample text with 1 Cor 1:1-5 and John 3:16 references.";
+// var correctedText = correctReferences(inputText);
+// console.log(correctedText);
+
+});
