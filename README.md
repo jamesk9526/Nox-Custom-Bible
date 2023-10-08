@@ -9,6 +9,8 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Formatting Bible Verses](#formatting-bible-verses)
+  - [Examples](#examples)
 - [Settings](#settings)
 - [Contribution](#contribution)
 - [License](#license)
@@ -38,40 +40,106 @@ Nox Custom Bible is a WordPress plugin designed to enable custom Bible verse pop
 
 Once activated, the plugin will automatically highlight Bible references in your posts and pages. When a user hovers over a reference, a popup will appear displaying the corresponding verse.
 
-Documentation: Formatting Bible Verses for Nox Custom Bible Plugin
+### Formatting Bible Verses
 
 The Nox Custom Bible plugin is designed to recognize and highlight Bible verse references within your content. To ensure accurate recognition and formatting, it's essential to follow a specific notation when writing out Bible verses. As of the current version, the plugin supports a basic notation, but with time, updates will be rolled out to accommodate more formatting options.
-Current Supported Notation:
 
-    Book Name followed by Chapter and Verse, separated by a colon (:).
-    Book abbreviations should be standardized as per the abbreviations.json file included in the plugin.
-    If mentioning multiple verses, use a hyphen (-) to indicate the range.
+**Current Supported Notation:**
 
-Examples:
+- Book Name followed by Chapter and Verse, separated by a colon (:).
+- Book abbreviations should be standardized as per the abbreviations.json file included in the plugin.
+- If mentioning multiple verses, use a hyphen (-) to indicate the range.
 
-    Single Verse:
-        Correct: John 3:16
-        Incorrect: Jn 3 16
+**Examples:**
 
-    Verse Range:
-        Correct: Romans 8:28-30
-        Incorrect: Rom 8 28 to 30
+- Single Verse:
+  - Correct: John 3:16
+  - Incorrect: Jn 3 16
 
-    Multiple References:
-        Separate different references with a semicolon (;).
-        Example: Genesis 1:1; John 1:1; Revelation 22:21
+- Verse Range:
+  - Correct: Romans 8:28-30
+  - Incorrect: Rom 8 28 to 30
 
-Future Updates:
+- Multiple References:
+  - Separate different references with a semicolon (;).
+  - Example: Genesis 1:1; John 1:1; Revelation 22:21
+
+**Examples**
+
+Here are examples of correctly formatted references for each book of the Bible:
+
+- Genesis: Genesis 1:1
+- Exodus: Exodus 20:3-5
+- Leviticus: Leviticus 19:18
+- Numbers: Numbers 6:24-26
+- Deuteronomy: Deuteronomy 6:4
+- Joshua: Joshua 1:9
+- Judges: Judges 16:19
+- Ruth: Ruth 1:16
+- 1 Samuel: 1 Samuel 16:7
+- 2 Samuel: 2 Samuel 22:31
+- 1 Kings: 1 Kings 8:23
+- 2 Kings: 2 Kings 17:39
+- 1 Corinthians: 1 Corinthians 13:4-7
+- 2 Corinthians: 2 Corinthians 5:17
+- Ezra: Ezra 7:10
+- Nehemiah: Nehemiah 8:10
+- Esther: Esther 4:14
+- Job: Job 19:25
+- Psalms: Psalms 23:1-3
+- Proverbs: Proverbs 3:5-6
+- Ecclesiastes: Ecclesiastes 3:1
+- Song of Solomon: Song of Solomon 4:7
+- Isaiah: Isaiah 40:31
+- Jeremiah: Jeremiah 29:11
+- Lamentations: Lamentations 3:22-23
+- Ezekiel: Ezekiel 36:26
+- Daniel: Daniel 3:17-18
+- Hosea: Hosea 6:6
+- Joel: Joel 2:28
+- Amos: Amos 5:24
+- Obadiah: Obadiah 1:15
+- Jonah: Jonah 2:10
+- Micah: Micah 6:8
+- Nahum: Nahum 1:7
+- Habakkuk: Habakkuk 3:19
+- Zephaniah: Zephaniah 3:17
+- Haggai: Haggai 2:9
+- Zechariah: Zechariah 9:9
+- Malachi: Malachi 3:10
+- Matthew: Matthew 5:16
+- Mark: Mark 16:15
+- Luke: Luke 10:27
+- John: John 14:6
+- Acts: Acts 1:8
+- Romans: Romans 8:28
+- Galatians: Galatians 5:22-23
+- Ephesians: Ephesians 2:8-9
+- Philemon: Philemon 1:6
+- Colossians: Colossians 3:23
+- 1 Timothy: 1 Timothy 4:12
+- 2 Timothy: 2 Timothy 1:7
+- Titus: Titus 2:11-12
+- Hebrews: Hebrews 4:12
+- James: James 1:22
+- 1 Peter: 1 Peter 5:7
+- 2 Peter: 2 Peter 1:3
+- 1 John: 1 John 4:19
+- 2 John: 2 John 1:6
+- 3 John: 3 John 1:11
+- Revelation: Revelation 22:21
+
+**Future Updates:**
 
 We are working tirelessly to improve the Nox Custom Bible plugin, and part of that involves enhancing the range of recognizable verse notations. In future versions, we aim to support:
 
-    Space or other common separators between book name, chapter, and verse.
-    Different book abbreviations.
-    Multiple verse references without the need for a semicolon.
+- Space or other common separators between book name, chapter, and verse.
+- Different book abbreviations.
+- Multiple verse references without the need for a semicolon.
 
-Feedback and Contributions:
+**Feedback and Contributions:**
 
-Your feedback is invaluable to the continual improvement of this plugin. If you encounter any issues, have suggestions, or wish to contribute to the development of this feature, feel free to raise an issue or submit a pull request on the Github repository.
+Your feedback is invaluable to the continual improvement of this plugin. If you encounter any issues, have suggestions, or wish to contribute to the development of this feature, feel free to raise an issue or submit a pull request on the [GitHub repository](https://github.com/jamesk9526/Nox-Custom-Bible).
 
 We appreciate your patience and support as we work towards making the Nox Custom Bible plugin more versatile and user-friendly. Stay tuned for updates, and thank you for being part of this journey to enrich online scripture reading and exploration!
 
