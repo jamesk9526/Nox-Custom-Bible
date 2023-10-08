@@ -16,7 +16,8 @@
 - [License](#license)
 - [Support](#support)
 
-![PCE Plugin](https://github.com/jamesk9526/Nox-Custom-Bible/assets/93682381/2741ae1e-4d49-4be8-8e6d-a54f242771a4)
+![image](https://github.com/jamesk9526/Nox-Custom-Bible/assets/93682381/58d4014b-9fbe-41ea-9cb1-9621b7e97055)
+
 
 ## Description
 
